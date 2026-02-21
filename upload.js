@@ -152,7 +152,7 @@ class ImageUploadManager {
     
     deleteImage(id) {
         if (confirm('Bu resmi silmek istediğinizden emin misiniz?')) {
-            const index = this.uploadedImages.findIndex(img => img.id == id);
+            const index = this.uploadedImages.findIndex(img => img.id === id);
             
             if (index !== -1) {
                 this.uploadedImages.splice(index, 1);
@@ -174,7 +174,7 @@ class ImageUploadManager {
     }
     
     downloadImage(id) {
-        const image = this.uploadedImages.find(img => img.id == id);
+        const image = this.uploadedImages.find(img => img.id === id);
         
         if (image) {
             const link = document.createElement('a');

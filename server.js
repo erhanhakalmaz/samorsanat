@@ -90,10 +90,17 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
         // Optimize image if requested
         if (req.body.optimize === 'true') {
-            await sharp(req.file.path)
-                .jpeg({ quality: 80 })
-                .png({ compressionLevel: 9 })
-                .toFile(req.file.path + '.optimized');
+            const sharpInstance = sharp(req.file.path);
+            
+            // Apply optimization based on file type
+            if (req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/jpg') {
+                await sharpInstance.jpeg({ quality: 80 }).toFile(req.file.path + '.optimized');
+            } else if (req.file.mimetype === 'image/png') {
+                await sharpInstance.png({ compressionLevel: 9 }).toFile(req.file.path + '.optimized');
+            } else {
+                // For other formats, just optimize without specific options
+                await sharpInstance.toFile(req.file.path + '.optimized');
+            }
             
             fs.renameSync(req.file.path + '.optimized', req.file.path);
         }
