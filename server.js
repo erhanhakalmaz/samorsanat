@@ -8,6 +8,16 @@ const sharp = require('sharp');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Rate limiting configuration
+// Note: For production use, install express-rate-limit package and uncomment:
+// const rateLimit = require('express-rate-limit');
+// const uploadLimiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     max: 100, // limit each IP to 100 requests per windowMs
+//     message: 'Too many upload requests, please try again later.'
+// });
+// Then apply to routes: app.post('/api/upload', uploadLimiter, upload.single('image'), ...)
+
 // Middleware
 app.use(cors());
 app.use(express.json());

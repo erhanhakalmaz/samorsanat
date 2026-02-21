@@ -217,6 +217,8 @@ samorsanat/
 - Sadece belirtilen resim formatları kabul edilir
 - Dosya isimleri güvenli hale getirilir
 - CORS koruması aktiftir
+- Flask debug modu production için devre dışıdır
+- Rate limiting için Flask-Limiter ve express-rate-limit paketleri eklenmiştir (kullanmak için README'deki yapılandırma notlarına bakın)
 
 ## Tarayıcı Desteği
 

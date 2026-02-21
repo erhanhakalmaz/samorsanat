@@ -10,6 +10,17 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
+# Rate limiting configuration
+# Note: For production use, install Flask-Limiter package and configure:
+# from flask_limiter import Limiter
+# from flask_limiter.util import get_remote_address
+# limiter = Limiter(
+#     app=app,
+#     key_func=get_remote_address,
+#     default_limits=["200 per day", "50 per hour"]
+# )
+# Then apply decorators: @limiter.limit("10 per minute") to upload routes
+
 # Configuration
 UPLOAD_FOLDER = 'uploads'
 THUMBNAIL_FOLDER = os.path.join(UPLOAD_FOLDER, 'thumbnails')
@@ -275,4 +286,6 @@ def request_entity_too_large(error):
 if __name__ == '__main__':
     print("E-Ticaret Resim Yükleme Sunucusu başlatılıyor...")
     print("http://localhost:5000 adresine gidin")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Debug mode is disabled for production security
+    # To enable debug mode for development, set debug=True
+    app.run(debug=False, host='0.0.0.0', port=5000)
