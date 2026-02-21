@@ -6,28 +6,45 @@
 1. ✅ Code Review - Completed
 2. ✅ CodeQL Security Scan - Completed
 3. ✅ Syntax Validation - Completed
+4. ✅ Dependency Vulnerability Scan - Completed
 
 ### Issues Found and Fixed
 
-#### 1. Flask Debug Mode (High Priority)
+#### 1. Multer Dependency Vulnerabilities (Critical)
+- **Issue:** Multer 1.4.5-lts.1 had multiple DoS vulnerabilities
+  - DoS via unhandled exception from malformed request
+  - DoS via unhandled exception
+  - DoS from maliciously crafted requests
+  - DoS via memory leaks from unclosed streams
+- **Risk:** Denial of Service attacks
+- **Fix:** Upgraded to Multer 2.0.2 (patched version)
+- **Status:** ✅ FIXED
+
+#### 2. Pillow Dependency Vulnerability (High Priority)
+- **Issue:** Pillow 10.1.0 had a buffer overflow vulnerability
+- **Risk:** Potential buffer overflow attacks
+- **Fix:** Upgraded to Pillow 10.3.0 (patched version)
+- **Status:** ✅ FIXED
+
+#### 3. Flask Debug Mode (High Priority)
 - **Issue:** Flask application was running with debug=True
 - **Risk:** Debug mode can expose sensitive information and allow arbitrary code execution
 - **Fix:** Changed debug=False in production configuration (app.py line 280)
 - **Status:** ✅ FIXED
 
-#### 2. Loose Equality Operators (Code Quality)
+#### 4. Loose Equality Operators (Code Quality)
 - **Issue:** Using == instead of === in JavaScript comparisons
 - **Risk:** Type coercion issues and unexpected behavior
 - **Fix:** Updated to use strict equality (===) in upload.js
 - **Status:** ✅ FIXED
 
-#### 3. Image Optimization Logic (Code Quality)
+#### 5. Image Optimization Logic (Code Quality)
 - **Issue:** Chaining both .jpeg() and .png() transformations
 - **Risk:** Incorrect image optimization and potential file corruption
 - **Fix:** Added conditional logic based on file type in server.js
 - **Status:** ✅ FIXED
 
-#### 4. Rate Limiting (Informational)
+#### 6. Rate Limiting (Informational)
 - **Issue:** Routes performing file system access without rate limiting
 - **Risk:** Potential DoS attacks through excessive upload requests
 - **Mitigation:** Added rate limiting configuration and documentation
