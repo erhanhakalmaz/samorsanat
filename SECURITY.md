@@ -20,10 +20,12 @@
 - **Fix:** Upgraded to Multer 2.0.2 (patched version)
 - **Status:** ✅ FIXED
 
-#### 2. Pillow Dependency Vulnerability (High Priority)
-- **Issue:** Pillow 10.1.0 had a buffer overflow vulnerability
-- **Risk:** Potential buffer overflow attacks
-- **Fix:** Upgraded to Pillow 10.3.0 (patched version)
+#### 2. Pillow Dependency Vulnerabilities (High Priority)
+- **Issue:** Pillow had multiple vulnerabilities
+  - 10.1.0: Buffer overflow vulnerability
+  - 10.3.0: Out-of-bounds write when loading PSD images
+- **Risk:** Potential buffer overflow and out-of-bounds write attacks
+- **Fix:** Upgraded to Pillow 12.1.1 (fully patched version)
 - **Status:** ✅ FIXED
 
 #### 3. Flask Debug Mode (High Priority)
